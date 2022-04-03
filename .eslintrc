@@ -1,0 +1,31 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb",
+        "plugin:jsx-a11y/recommended",
+        "plugin:react-hooks/recommended",
+        "prettier"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 13,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "plugins": [
+        "react",
+        "react-hooks",
+        "prettier"
+    ],
+    "rules": {
+        "prettier/prettier": "error",
+        "linebreak-style": "off",
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "react/react-in-jsx-scope": "off"
+    }
+}
