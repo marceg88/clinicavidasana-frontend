@@ -1,0 +1,21 @@
+.card-payment{
+    display: flex;
+    flex-direction: row;
+    height: auto;
+}
+.inf-container-card{
+    display: flex;
+    width: 600px;
+    height: 200px;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 50px;
+    margin-left: 100px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2)
+}
+.card-inf-user{
+    display: flex;
+    justify-content: center;
+}

@@ -1,28 +1,36 @@
 import { Form, Button, Input, Select, DatePicker } from 'antd';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { registerService } from '../../../store/serviceSlice';
-import { selectUser } from '../../../store/userSlice';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import {
+  editService,
+  findServiceById,
+  selectService
+} from '../../../../store/serviceSlice';
 
 // import "./accesoUsuario.css"
 
-function SolicitarCita() {
+function EditarCita() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id: patient } = useSelector(selectUser);
-  console.log(patient);
-  const valor = [150000, 200000, 180000, 80000];
+  const { serviceId } = useParams();
+  const service = useSelector(selectService);
+
+  useEffect(() => {
+    dispatch(findServiceById(serviceId));
+  }, [dispatch, serviceId]);
+
   const onFinish = (values) => {
     const data = {
-      ...values,
-      patient
+      serviceId,
+      newData: {
+        ...values
+        // dateService: values.dateService.toString()
+      }
     };
     console.log(data);
-    dispatch(registerService(data));
+    dispatch(editService(data));
     navigate('/usuario/historial');
-  };
-  const handleOnChange = (values) => {
-    const cita = values.nameService;
   };
   return (
     <div className="login-container">
@@ -30,12 +38,7 @@ function SolicitarCita() {
         <div className="title-container">
           <h2>Solicita tu cita</h2>
         </div>
-        <div className="link-register">
-          <h3>
-            ¿Iniciaste sesión?{' '}
-            <Link to="/registro"> Ingresa aquí para iniciar</Link>
-          </h3>
-        </div>
+
         <div className="input-container">
           <Form
             name="basic"
@@ -82,7 +85,7 @@ function SolicitarCita() {
                     }
                   ]}
                 >
-                  <DatePicker style={{ width: '100%' }} />
+                  <DatePicker />
                 </Form.Item>
               </div>
             </div>
@@ -99,12 +102,7 @@ function SolicitarCita() {
             </div>
             <div className="button-grid">
               <Form.Item>
-                <Button
-                  className="button-margin"
-                  type="primary"
-                  shape="round"
-                  onClick={() => navigate('/servicios')}
-                >
+                <Button className="button-margin" type="primary" shape="round">
                   Cancelar
                 </Button>
                 <Button
@@ -113,7 +111,7 @@ function SolicitarCita() {
                   shape="round"
                   htmlType="submit"
                 >
-                  Solicitar
+                  Editar
                 </Button>
               </Form.Item>
             </div>
@@ -124,4 +122,4 @@ function SolicitarCita() {
   );
 }
 
-export default SolicitarCita;
+export default EditarCita;

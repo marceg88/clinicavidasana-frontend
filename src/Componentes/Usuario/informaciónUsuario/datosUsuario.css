@@ -7,10 +7,12 @@
     background-color: #00B0CA;
     flex-direction: column;
 }
-.inf-grid{
+.inf-user-margin{
     display: flex;
-    width: 100px;
-    margin-top: 20px; 
+    width: 500px;
+    margin-top: 40px; 
+    margin-left: 0;
+    margin-right: 0;
     flex-direction: column;
     /* width: 50%; */
     /* /* height: 100%; */
